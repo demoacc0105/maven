@@ -10,7 +10,8 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url:'https://github.com/Naveen04jan/demo-app.git'
+                git branch: 'main', url:'https://github.com/Naveen04jan/demo-app.git',
+                credentialsId: 'github-token'
             }
         }
 
