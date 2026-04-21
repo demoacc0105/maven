@@ -1,19 +1,28 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven3'
+        jdk 'JDK17'
+    }
+
     stages {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/Naveen04jan/ven.git'
+                git branch: 'main', url:'https://github.com/Naveen04jan/demo-app.git'
             }
         }
 
-        stage('Build & Test') {
+        stage('Build') {
             steps {
-                sh 'mvn -v'
-                sh 'java -version'
-                sh 'mvn clean install'
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
             }
         }
 
